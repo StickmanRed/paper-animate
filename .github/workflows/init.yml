@@ -8,6 +8,8 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+    - uses: actions/checkout@v4
+
     - name: npm init
       run: npm init -y
     - name: Push commits
