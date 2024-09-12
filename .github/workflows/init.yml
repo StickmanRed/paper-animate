@@ -16,6 +16,6 @@ jobs:
       run: |
         git config user.email "you@example.com"
         git config user.name "funny bot"
-        git add package.json
+        git add --all
         git commit -m "Initiate npm"
         git push
