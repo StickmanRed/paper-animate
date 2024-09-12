@@ -7,5 +7,6 @@ You can interpolate Paths.
 You can tween Paths.
 ## what to do
 - [ ] Figure out what to do
+- [ ] Setup canvas, tools, and other stuff on page load
 ## Log
 September 12, 2024 - This repository has now been stabilized. :P Now I can work on actually figuring out what to do.
