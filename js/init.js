@@ -17,9 +17,10 @@ jQuery(function($) {
         paper.execute(tools[name]);
         toolIndices[name] = paper.tools.length - 1;
     });
-    $("document").on("keydown", (e) => {
-        if (Object.hasOwn(toolKeymap, e.key)) {
-            paper.tools[toolIndices[toolKeymap[e.key]]].activate();
+    $(document).on("keydown", e => {
+        const key = String.fromCharCode(e.which);
+        if (Object.hasOwn(toolKeymap, key)) {
+            paper.tools[toolIndices[toolKeymap[key]]].activate();
         }
     });
 });
