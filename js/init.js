@@ -1,4 +1,4 @@
-import tools from "./tools.js";
+import {tools, toolKeymap} from "./tools.js";
 
 jQuery(function($) {
     const $canvas = $("<canvas id='mainCanvas'></canvas>");
@@ -11,7 +11,16 @@ jQuery(function($) {
         path.add([0,0], [150, 100]);`
     );
 
-    tools.forEach((paperCallback) => {
-        paper.execute(paperCallback);
+    const toolIndices = {}
+    // const toolOptions = {};
+    const shared = {};
+    Object.getOwnPropertyNames(tools).forEach((name) => {
+        paper.execute(tools[name]);
+        toolIndices[name] = paper.tools.length - 1;
+    });
+    $("document").on("keydown", (e) => {
+        if (Object.hasOwn(toolKeymap, e.key)) {
+            paper.tools[toolIndices[toolKeymap[e.key]]].activate();
+        }
     });
 });

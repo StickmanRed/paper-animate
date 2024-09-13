@@ -1,7 +1,16 @@
-const tools = [];
+/* shared - An object that contains any variables shared across tools.
+ * 
+ */
 
-tools.push(
-    `// We start by defining an empty variable that is visible by both
+const tools = {};
+const toolKeymap = {
+    "1": "line",
+    "2": "string"
+};
+
+tools.line = 
+    `console.log(shared);
+    // We start by defining an empty variable that is visible by both
     // mouse handlers.
     var myPath;
 
@@ -18,9 +27,9 @@ tools.push(
         // The mouse was released, so we add the new location as the end
         // segment of the line.
         myPath.add(event.point);
-    }`
-);
-tools.push(
+    }`;
+
+tools.string = 
     `var myPath;
 
     function onMouseDown(event) {
@@ -39,7 +48,6 @@ tools.push(
         });
         myCircle.strokeColor = 'black';
         myCircle.fillColor = 'white';
-    }`
-);
+    }`;
 
-export default tools;
+export {tools, toolKeymap};
