@@ -9,8 +9,7 @@ const toolKeymap = {
 };
 
 tools.line = 
-    `console.log(shared);
-    // We start by defining an empty variable that is visible by both
+    `// We start by defining an empty variable that is visible by both
     // mouse handlers.
     var myPath;
 

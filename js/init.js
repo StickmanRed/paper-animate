@@ -13,7 +13,6 @@ jQuery(function($) {
 
     const toolIndices = {}
     // const toolOptions = {};
-    const shared = {};
     Object.getOwnPropertyNames(tools).forEach((name) => {
         paper.execute(tools[name]);
         toolIndices[name] = paper.tools.length - 1;
