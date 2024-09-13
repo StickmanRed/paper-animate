@@ -1,3 +1,5 @@
+import tools from "./tools.js";
+
 jQuery(function($) {
     const $canvas = $("<canvas id='mainCanvas'></canvas>");
     $("body").append($canvas);
@@ -8,4 +10,8 @@ jQuery(function($) {
         path.strokeColor = "red";
         path.add([0,0], [150, 100]);`
     );
+
+    tools.forEach((paperCallback) => {
+        paper.execute(paperCallback);
+    });
 });
