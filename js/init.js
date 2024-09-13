@@ -2,7 +2,7 @@ jQuery(function($) {
     const $canvas = $("<canvas id='mainCanvas'></canvas>");
     $("body").append($canvas);
 
-    paper.setup($canvas.get());
+    paper.setup($canvas.get(0)); // Add the 0. Tricky
     paper.execute(
         `path = new Path();
         path.strokeColor = "red";
