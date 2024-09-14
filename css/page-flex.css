@@ -1,0 +1,8 @@
+#page-container {
+    display: flex;
+    flex-direction: column;
+}
+#center-container {
+    display: flex;
+    flex-direction: row;
+}

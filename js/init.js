@@ -1,8 +1,8 @@
 import {tools, toolKeymap} from "./tools.js";
 
 jQuery(function($) {
-    const $canvas = $("<canvas id='mainCanvas'></canvas>");
-    $("body").append($canvas);
+    const $canvas = $("<canvas id='mainCanvas' resize='true'></canvas>");
+    $("#canvas-container").append($canvas);
 
     paper.setup($canvas.get(0)); // Add the 0. Tricky
     paper.execute(
@@ -11,6 +11,7 @@ jQuery(function($) {
         path.add([0,0], [150, 100]);`
     );
 
+    // Quick keypress test. This is not final
     const toolIndices = {}
     // const toolOptions = {};
     Object.getOwnPropertyNames(tools).forEach((name) => {
