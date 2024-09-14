@@ -4,18 +4,28 @@
         <script type="text/javascript" src="node_modules/jquery/dist/jquery.js"></script>
         <script type="text/javascript" src="node_modules/paper/dist/paper-full.js"></script>
         <script type="module" src="js/init.js"></script>
-        <link rel="stylesheet" href="css/canvas.css"></style>
-        <link rel="stylesheet" href="css/page-flex.css"></style>
+        <link rel="stylesheet" href="css/canvas.css"></link>
+        <link rel="stylesheet" href="css/page-flex.css"></link>
+        <style>
+            .test-v {
+                height: 100px;
+                background-color: black;
+            }
+            .test-h {
+                width: 100px;
+                background-color: black;
+            }
+        </style>
     </head>
     <body>
         <div id="page-container">
-            <div id="top-window" height="100px"></div>
+            <div id="top-window" class="test-v"></div>
             <div id="center-container">
-                <div id="left-window" width="100px"></div>
+                <div id="left-window" class="test-h"></div>
                 <div id="canvas-container"></div>
-                <div id="right-window" width="100px"></div>
+                <div id="right-window" class=test-h></div>
             </div>
-            <div id="bottom-window" height="100px"></div>
+            <div id="bottom-window" class="test-v"></div>
         </div>
     </body>
 </html>
