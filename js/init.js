@@ -1,4 +1,4 @@
-import {tools, toolKeymap} from "./tools.js";
+import {ToolWrapper, tools, toolKeymap} from "./tools.js";
 
 jQuery(function($) {
     const $canvas = $("<canvas id='mainCanvas' resize='true'></canvas>");
@@ -12,16 +12,15 @@ jQuery(function($) {
     );
 
     // Quick keypress test. This is not final
-    const toolIndices = {}
-    // const toolOptions = {};
+    const toolWrappers = {};
     Object.getOwnPropertyNames(tools).forEach((name) => {
-        paper.execute(tools[name]);
-        toolIndices[name] = paper.tools.length - 1;
+        toolWrappers[name] = new ToolWrapper(name, tools[name]);
     });
+
     $(document).on("keydown", e => {
         const key = String.fromCharCode(e.which);
         if (Object.hasOwn(toolKeymap, key)) {
-            paper.tools[toolIndices[toolKeymap[key]]].activate();
+            paper.tools[toolWrappers[toolKeymap[key]].toolIndex].activate();
         }
     });
 });
