@@ -20,7 +20,7 @@ jQuery(function($) {
     $(document).on("keydown", e => {
         const key = String.fromCharCode(e.which);
         if (Object.hasOwn(toolKeymap, key)) {
-            paper.tools[toolWrappers[toolKeymap[key]].toolIndex].activate();
+            toolWrappers[toolKeymap[key]].tool.activate();
         }
     });
 });
