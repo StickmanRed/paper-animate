@@ -8,6 +8,7 @@ const toolKeymap = {
     "2": "string"
 };
 
+// Normally, these functions would be Javascript.
 tools.line = () => {
     paper.execute(
         `// We start by defining an empty variable that is visible by both
@@ -29,6 +30,7 @@ tools.line = () => {
             myPath.add(event.point);
         }`
     );
+    return paper.tools[paper.tools.length - 1];
 };
 
 tools.string = () => {
@@ -53,6 +55,7 @@ tools.string = () => {
             myCircle.fillColor = 'white';
         }`
     );
+    return paper.tools[paper.tools.length - 1];
 };
 
 /* A class, ToolWrapper, that contains a reference to the tool and other data
