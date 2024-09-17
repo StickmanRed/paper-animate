@@ -10,7 +10,7 @@
 import { FunctionWrapper } from "./FunctionWrapper.js";
 
 class ToolWrapper {
-    toolWrappers = {};
+    static toolWrappers = {};
     tCounter = 0;
     constructor(name, initiator) {
         /* name: Tool name, used somewhere idk
@@ -20,7 +20,7 @@ class ToolWrapper {
         this.name = name ?? `Tool${++tCounter}`;
         this.tool = initiator(); // I give up trying to make this easier. You do all the work.
 
-        toolWrappers[this.name] = this;
+        ToolWrapper.toolWrappers[this.name] = this;
     }
 
     get toolIndex() {
