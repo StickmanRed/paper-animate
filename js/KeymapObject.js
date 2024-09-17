@@ -14,7 +14,7 @@ export class KeymapObject {
                         + (event.shiftKey ? "Shift+" : "")
                         + String.fromCharCode(event.which);
 
-        if (Object.hasOwn(toolKeymap, keySequence)) {
+        if (Object.hasOwn(this.keymap, keySequence)) {
             window.globalProject.stackAdd(this.keymap[keySequence]);
         }
     }
