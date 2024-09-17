@@ -7,7 +7,7 @@
 /* A class, ToolWrapper, that contains a reference to the tool and other data
  */
 
-import { FunctionWrapper } from "./FunctionWrapper";
+import { FunctionWrapper } from "./FunctionWrapper.js";
 
 class ToolWrapper {
     toolWrappers = {};

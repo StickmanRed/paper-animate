@@ -1,6 +1,6 @@
-import { KeymapObject } from "./KeymapObject";
+import { KeymapObject } from "./KeymapObject.js";
 
-import { toolInitKeymap } from "./tools";
+import { toolInitKeymap } from "./tools.js";
 
 export function initKeymaps() {
     const keymaps = new KeymapObject();
