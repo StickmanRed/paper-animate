@@ -1,12 +1,34 @@
 /* Tools - figure out how to make them
- * paper.Tool has event handlers, a limited amount of them. You have the events, so make the properties already.
+ *
+ * I know I'll need this somewhere:
+ * ["onMouseDown", "onMouseDrag", "onMouseMove", "onMouseUp", "onKeyDown", "onKeyUp"]
  */
 
+/* A class, ToolWrapper, that contains a reference to the tool and other data
+ */
+
+import { FunctionWrapper } from "./FunctionWrapper";
+
+class ToolWrapper {
+    toolWrappers = {};
+    tCounter = 0;
+    constructor(name, initiator) {
+        /* name: Tool name, used somewhere idk
+         * initiator: Function that initiates the tool. Should return a Tool object.
+         */
+        "blah";
+        this.name = name ?? `Tool${++tCounter}`;
+        this.tool = initiator(); // I give up trying to make this easier. You do all the work.
+
+        toolWrappers[this.name] = this;
+    }
+
+    get toolIndex() {
+        return paper.tools.indexOf(this.tool);
+    }
+}
+
 const tools = {};
-const toolKeymap = {
-    "1": "line",
-    "2": "string"
-};
 
 // Normally, these functions would be Javascript.
 tools.line = () => {
@@ -58,64 +80,26 @@ tools.string = () => {
     return paper.tools[paper.tools.length - 1];
 };
 
-/* A class, ToolWrapper, that contains a reference to the tool and other data
- */
+// Initiate the tools here.
+Object.getOwnPropertyNames(tools).forEach((name) => {
+    new ToolWrapper(name, tools[name]);
+});
 
-class ToolWrapper {
-    tCounter = 0;
-    #eventIDs = ["onMouseDown", "onMouseDrag", "onMouseMove", "onMouseUp", "onKeyDown", "onKeyUp"];
-    constructor(name, initiator) {
-        /* name: Tool name, used somewhere idk
-         * initiator: Function that initiates the tool. Should return a Tool object.
-         */
-        "blah";
-        this.name = name ?? `Tool${++tCounter}`;
-        this.tool = initiator(); // I give up trying to make this easier. You do all the work.
-    }
+const toolInitKeymap = {
+    "1": new FunctionWrapper(
+        data => {
+            data.lastTool = paper.tool;
+            ToolWrapper.toolWrappers.line.tool.activate();
+        },
+        data => data.lastTool.activate()
+    ),
+    "2": new FunctionWrapper(
+        data => {
+            data.lastTool = paper.tool;
+            ToolWrapper.toolWrappers.string.tool.activate();
+        },
+        data => data.lastTool.activate()
+    )
+};
 
-    get toolIndex() {
-        return paper.tools.indexOf(this.tool);
-    }
-
-
-    /* constructor(name, events) {
-        /* name: Tool name, used somewhere idk
-         * events: Tool events and their callbacks. @StickmanRed (note to self), make them arrays sometime
-         *
-         * Callbacks should be function objects written in Javascript. I won't try to coerce Paperscript anymore.
-         *\/
-        "blah";
-        this.name = name ?? `Tool${++tCounter}`;
-        this.tool = new paper.Tool();
-        this.#eventIDs.forEach((eventName) => {
-            if (Object.hasOwn(events, eventName)) {
-                this.tool[eventName] = [events[eventName]];
-            }
-        }, this);
-
-        this.data = {};
-    }
-    get toolIndex() {
-        return paper.tools.indexOf(this.tool);
-    }
-
-    /* Handles event setting.
-     * @StickmanRed (note to self), make this "addEvent" and "removeEvent" sometime
-    *\/
-    setEvent(eventName, callback) {
-        if (this.#eventIDs.includes(eventName)) {
-            this.tool[eventName] = [callback];
-        }
-    }
-
-    remove() {
-        /* Deletes the tool.
-         * There's no way to add tools back, so why bother keeping any of the info here?
-         *\/
-        this.tool.remove();
-        this = null; // Leave this to the elusive JS garbage collector
-    }*/
-    
-}
-
-export {ToolWrapper, tools, toolKeymap};
+export {toolInitKeymap};
