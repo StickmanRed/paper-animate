@@ -9,9 +9,9 @@ export class KeymapObject {
     keyHandler(event) {
         /* @StickmanRed (note to self), check for Mac keyboards sometime
          */
-        let keySequence = (e.ctrlKey ? "Control+" : "") 
-                        + (e.altKey ? "Alt+" : "")
-                        + (e.shiftKey ? "Shift+" : "")
+        let keySequence = (event.ctrlKey ? "Control+" : "") 
+                        + (event.altKey ? "Alt+" : "")
+                        + (event.shiftKey ? "Shift+" : "")
                         + String.fromCharCode(event.which);
 
         if (Object.hasOwn(toolKeymap, keySequence)) {
