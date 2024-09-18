@@ -10,6 +10,7 @@ import { ToolWrapper } from "./ToolWrapper.js";
 const tools = {};
 
 // Normally, these functions would be Javascript.
+// Note: Paperscript does not support arrow functions.
 tools.line = () => {
     paper.execute(
         `// We start by defining an empty variable that is visible by both
@@ -32,10 +33,10 @@ tools.line = () => {
 
             // We add this to make line-drawing undoable.
             window.globalProject.stackAdd(new window.globalProject.classes.FunctionWrapper( // That's a mouthful
-                data => {
+                function(data) {
                     data.path.remove();
                 },
-                data => {
+                function(data) {
                     data.path.addTo(parent);
                 },
                 { parent: myPath.parent, path: myPath }
