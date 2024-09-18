@@ -1,8 +1,8 @@
-/* Required by paper.js, disabling it for now
-canvas[resize] {
+/* Required by paper.js */
+canvas[resize], #canvas-container {
     width: 100%;
     height: 100%;
-}*/
+}
 
 html, body, #page-container, #center-container {
     width: 100%;
