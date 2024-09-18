@@ -26,11 +26,13 @@ export class Project {
         return runAction ? funcWrapper.action() : null;
     }
     stackUndo() {
+        if (this.undoStack.length === 0) {return null;}
         const funcWrapper = this.undoStack.pop()
         this.redoStack.push(funcWrapper);
         return funcWrapper.inverse();
     }
     stackRedo() {
+        if (this.redoStack.length === 0) {return null;}
         const funcWrapper = this.redoStack.pop();
         this.undoStack.push(funcWrapper);
         return funcWrapper.action();

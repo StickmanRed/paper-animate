@@ -12,7 +12,7 @@
             }
             .test-h {
                 width: 100px;
-                background-color: black;
+                background-color: white;
             }
         </style>
     </head>
@@ -20,7 +20,10 @@
         <div id="page-container">
             <div id="top-window" class="test-v"></div>
             <div id="center-container">
-                <div id="left-window" class="test-h"></div>
+                <div id="left-window" class="test-h">
+                    <button onclick="window.globalProject.stackUndo();">Undo</button>
+                    <button onclick="window.globalProject.stackRedo();">Redo</button>
+                </div>
                 <div id="canvas-container"></div>
                 <div id="right-window" class=test-h></div>
             </div>
