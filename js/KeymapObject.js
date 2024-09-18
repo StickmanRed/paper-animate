@@ -2,8 +2,7 @@
 // Okay, I guess this is how "this" is supposed to work, but it would be really nice to have some sort of auto-generating function function generator.
 function keyHandlerGenerator(thisValue) {
     return function(event) {
-        /* @StickmanRed (note to self), check for Mac keyboards sometime
-        */
+        // @StickmanRed (note to self), check for Mac keyboards sometime
         let keySequence = (event.ctrlKey ? "Control+" : "") 
                         + (event.altKey ? "Alt+" : "")
                         + (event.shiftKey ? "Shift+" : "")

@@ -4,29 +4,8 @@
  * ["onMouseDown", "onMouseDrag", "onMouseMove", "onMouseUp", "onKeyDown", "onKeyUp"]
  */
 
-/* A class, ToolWrapper, that contains a reference to the tool and other data
- */
-
 import { FunctionWrapper } from "./FunctionWrapper.js";
-
-class ToolWrapper {
-    static toolWrappers = {};
-    tCounter = 0;
-    constructor(name, initiator) {
-        /* name: Tool name, used somewhere idk
-         * initiator: Function that initiates the tool. Should return a Tool object.
-         */
-        "blah";
-        this.name = name ?? `Tool${++tCounter}`;
-        this.tool = initiator(); // I give up trying to make this easier. You do all the work.
-
-        ToolWrapper.toolWrappers[this.name] = this;
-    }
-
-    get toolIndex() {
-        return paper.tools.indexOf(this.tool);
-    }
-}
+import { ToolWrapper } from "./ToolWrapper.js";
 
 const tools = {};
 
@@ -50,6 +29,18 @@ tools.line = () => {
             // The mouse was released, so we add the new location as the end
             // segment of the line.
             myPath.add(event.point);
+
+            // We add this to make line-drawing undoable.
+            window.globalProject.stackAdd(new window.globalProject.classes.FunctionWrapper( // That's a mouthful
+                data => {
+                    data.path.remove();
+                },
+                data => {
+                    data.path.addTo(parent);
+                },
+                { parent: myPath.parent, path: myPath }
+                )
+            );
         }`
     );
     return paper.tools[paper.tools.length - 1];

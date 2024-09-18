@@ -1,13 +1,10 @@
-/* Provides a undo/redo functionality to functions.
- */
+/* Provides a undo/redo functionality to functions. */
 
-class FunctionWrapper {
-    constructor(action, inverse) {
-        this.data = {};
+export class FunctionWrapper {
+    constructor(action, inverse, initialData) {
+        this.data = initialData ?? {};
         const dataObject = this.data;
         this.action = function() {return action(dataObject)};
         this.inverse = function() {return inverse(dataObject)};
     }
 }
-
-export {FunctionWrapper};
