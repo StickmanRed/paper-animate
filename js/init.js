@@ -3,7 +3,8 @@ import { initKeymaps } from "./keymap_init.js";
 
 jQuery(function($) {
     /* Initialize canvas, paper.js */
-    const $canvas = $("<canvas id='mainCanvas' resize='true'></canvas>");
+    // resize='true'
+    const $canvas = $("<canvas id='mainCanvas'></canvas>");
     $("#canvas-container").append($canvas);
     paper.setup($canvas.get(0)); // Add the 0. Tricky
 
