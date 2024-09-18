@@ -34,10 +34,10 @@ tools.line = () => {
             // We add this to make line-drawing undoable.
             window.globalProject.stackAdd(new window.globalProject.classes.FunctionWrapper( // That's a mouthful
                 function(data) {
-                    data.path.remove();
+                    data.path.addTo(data.parent);
                 },
                 function(data) {
-                    data.path.addTo(parent);
+                    data.path.remove();
                 },
                 { parent: myPath.parent, path: myPath }
                 )
