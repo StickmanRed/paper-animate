@@ -67,6 +67,20 @@ tools.string = () => {
             });
             myCircle.strokeColor = 'black';
             myCircle.fillColor = 'white';
+            
+            // We add this to make string-drawing undoable.
+            window.globalProject.stackAdd(new window.globalProject.classes.FunctionWrapper(
+                function(data) {
+                    data.string.addTo(data.stringParent);
+                    data.circle.addTo(data.circleParent);
+                },
+                function(data) {
+                    data.string.remove();
+                    data.circle.remove();
+                },
+                { stringParent: myPath.parent, circleParent: myCircle.parent, string: myPath, circle: myCircle }
+                )
+            );
         }`
     );
     return paper.tools[paper.tools.length - 1];
