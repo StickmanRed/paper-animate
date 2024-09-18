@@ -9,7 +9,7 @@ function keyHandlerGenerator(thisValue) {
                         + String.fromCharCode(event.which);
 
         if (Object.hasOwn(thisValue.keymap, keySequence)) {
-            window.globalProject.stackAdd(thisValue.keymap[keySequence]);
+            window.globalProject.stackAdd(thisValue.keymap[keySequence], true);
         }
     }
 }
