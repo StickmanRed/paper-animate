@@ -1,4 +1,4 @@
-import { FunctionWrapper } from "./FunctionWrapper";
+import { FunctionWrapper } from "./FunctionWrapper.js";
 
 export class Project {
     constructor() {
