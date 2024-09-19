@@ -15,6 +15,17 @@ jQuery(function($) {
     /* Initialize keybinds */
     initKeymaps();
 
+    /* Canvas resizing patch */
+    // @StickmanRed (note to self), add option to let canvas fill the browser window sometime
+    function resizeCanvas(entries) {
+        let {inlineSize: width, blockSize: height} = entries[0].contentBoxSize[0];
+        $canvas[0].width = width;
+        $canvas[0].height = height;
+        paper.view.setViewSize(width, height);
+    }
+    const canvasObserver = new ResizeObserver(resizeCanvas);
+    canvasObserver.observe($canvas.parent()[0]);
+
     /* Test scripts */
     paper.execute(
         `path = new Path();
