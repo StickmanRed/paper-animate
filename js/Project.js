@@ -5,9 +5,13 @@ export class Project {
         this.name = "Untitled";
 
         // @StickmanRed (note to self), what actions should be on the undo stack?
+        // Also, should different containers have different undo stacks?
+        // Containers are the "sidebars"; you're to be able to put components in them.
         this.undoStack = [];
         this.redoStack = [];
 
+        // this.keymaps entries come in keymap name:KeymapObject pairs
+        // Each container will have a keymapName to which it will reference
         this.keymaps = {};
 
         // Needed by tools to create FunctionWrappers
