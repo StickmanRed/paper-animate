@@ -7,7 +7,14 @@ Edit: I've found the problem, and it's because I don't know what I'm doing.
 ## Good Notes
 
 You can interpolate Paths.<br>
-You can tween Paths.
+You can tween Paths.<br>
+
+## Feature Ideas
+
+While I'm brainstorming, why not pick up some more wanted features from the Wick Forums?
+
+- Asset folders
+- Viewing other layers while editing a clip (symbol or sub-layer)
 
 ## what to do
 

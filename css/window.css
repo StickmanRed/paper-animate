@@ -1,0 +1,22 @@
+#window-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.container {
+    display: flex;
+}
+.container-h {
+    flex-direction: row;
+}
+.container-v {
+    flex-direction: column;
+}
+
+.window {
+    overflow-x: hidden;
+    overflow-y: auto;
+}

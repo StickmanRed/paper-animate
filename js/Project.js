@@ -13,11 +13,17 @@ export class Project {
         // this.keymaps entries come in keymap name:KeymapObject pairs
         // Each container will have a keymapName to which it will reference
         this.keymaps = {};
+        // this.mouseAction is an ID for the current mouse thingy being done
+        // I think HTML is capable enough for mouseAction to not be verified?
+        this.mouseAction = "";
 
         // Needed by tools to create FunctionWrappers
         this.classes = {
             FunctionWrapper: FunctionWrapper
         };
+
+        // WindowName:Window pairs
+        this.windows = {};
     }
 
     attach() {
