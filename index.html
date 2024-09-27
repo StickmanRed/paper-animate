@@ -1,10 +1,33 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <script type="text/javascript" src="paper/dist/paper-full.js"></script>
-        <script type="text/paperscript" src="js/main.js" canvas="mainCanvas"></script>
+        <script type="text/javascript" src="node_modules/jquery/dist/jquery.js"></script>
+        <script type="text/javascript" src="node_modules/paper/dist/paper-full.js"></script>
+        <script type="module" src="js/init.js"></script>
+        <link rel="stylesheet" href="css/page-flex.css"></link>
+        <style>
+            .test-v {
+                flex-basis: 100px;
+                background-color: black;
+            }
+            .test-h {
+                flex-basis: 100px;
+                background-color: white;
+            }
+        </style>
     </head>
     <body>
-        <canvas id="mainCanvas"></canvas>
+        <div id="page-container">
+            <div id="top-window" class="test-v"></div>
+            <div id="center-container">
+                <div id="left-window" class="test-h">
+                    <button onclick="window.globalProject.stackUndo();">Undo</button>
+                    <button onclick="window.globalProject.stackRedo();">Redo</button>
+                </div>
+                <div id="canvas-container"></div>
+                <div id="right-window" class=test-h></div>
+            </div>
+            <div id="bottom-window" class="test-v"></div>
+        </div>
     </body>
 </html>

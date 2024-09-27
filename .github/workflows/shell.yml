@@ -1,4 +1,4 @@
-name: Shell
+name: Makeshift command line
 
 on:
   workflow_dispatch:
@@ -6,16 +6,17 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-
     steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v4
-      - name: Install paper
+    - uses: actions/checkout@v4
 
-        run: npm install paper
-      - name: Retrieve files
-        uses: actions/upload-artifact@v4
-        with:
-          path: /home/runner/work/paper-animate/paper-animate
-  download:
-    uses: ./.github/workflows/artifact.yml
+    - name: Script
+      run: |
+        npm install jquery
+      
+    - name: Push commits
+      run: |
+        git config user.email "you@example.com"
+        git config user.name "funny bot"
+        git add --all
+        git commit -m "Install jQuery"
+        git push
