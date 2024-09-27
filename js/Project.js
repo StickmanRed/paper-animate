@@ -21,7 +21,7 @@ export class Project {
         this.classes = {
             FunctionWrapper: FunctionWrapper
         };
-
+      
         // WindowName:Window pairs
         this.windows = {};
     }
