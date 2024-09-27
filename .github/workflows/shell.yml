@@ -1,4 +1,4 @@
-name: Makeshift command line
+name: Shell
 
 on:
   workflow_dispatch:
@@ -6,17 +6,16 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v4
 
-    - name: Script
-      run: |
-        npm install paper
-      
-    - name: Push commits
-      run: |
-        git config user.email "you@example.com"
-        git config user.name "funny bot"
-        git add --all
-        git commit -m "Initiate npm"
-        git push
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v4
+      - name: Install paper
+
+        run: npm install paper
+      - name: Retrieve files
+        uses: actions/upload-artifact@v4
+        with:
+          path: /home/runner/work/paper-animate/paper-animate
+  download:
+    uses: ./.github/workflows/artifact.yml
