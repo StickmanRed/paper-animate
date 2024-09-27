@@ -1,15 +1,13 @@
 {
   "name": "paper-animate",
   "version": "1.0.0",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
+  "main": "src/main.js",
+  "scripts": {},
   "keywords": [],
   "author": "",
   "license": "ISC",
   "description": "",
   "dependencies": {
-    "paper": "^0.12.18"
+    "paper": "0.12.17"
   }
 }
