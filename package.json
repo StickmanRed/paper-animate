@@ -10,6 +10,7 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
+    "interactjs": "^1.10.27",
     "jquery": "^3.7.1",
     "paper": "^0.12.18"
   }
