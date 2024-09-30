@@ -51,7 +51,7 @@ export class Window {
     set width(val) {
         this.#width = val;
         if (this.container) {
-            if (this.direction === "h") {
+            if (this.direction === "v") {
                 this.$element.css("flex-basis", `${val}%`);
             }
         }
@@ -65,7 +65,7 @@ export class Window {
     set height(val) {
         this.#height = val;
         if (this.container) {
-            if (this.direction === "v") {
+            if (this.direction === "h") {
                 this.$element.css("flex-basis", `${val}%`);
             }
         }

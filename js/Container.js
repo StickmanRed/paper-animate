@@ -16,10 +16,19 @@ export class Container {
     constructor($element, direction, resizeDirection) {
         // You had better define the element right now.
         this.$element = $element.addClass(`container container-${direction}`);
-        this.$resize = $(`<div id="container-draggable"></div>`).css({
+        this.$windowContainer = $(`<div class="container-windows"></div>`).css({
+            "position": "relative",
+            "width": `calc(100% - ${Container.CONTAINER_PADDING}px)`,
+            "height": `calc(100% - ${Container.CONTAINER_PADDING}px)`,
+            "margin": `${Container.CONTAINER_PADDING}px`,
+            "float": "left", // This should fix any margin issues... but if there's something wrong, check here
+            "display": "flex",
+            "flex-flow": "row nowrap"
+        }).appendTo(this.$element);
+        this.$resize = $(`<div class="container-draggable"></div>`).css({
             "position": "relative",
             "width": "100%",
-            "height": Container.RESIZE_LENGTH
+            "height": "100%"
         });
         switch (resizeDirection) {
             case "top":
@@ -35,6 +44,10 @@ export class Container {
                 this.$resize.css("left", $element.width());
                 break;
         }
+        // this.direction I guess specifies the flex-flow?
+        // No. I'm changing this
+        // this.direction and this.resizeDirection now specify the same direction...
+        // the resize direction.
         this.direction = direction;
         this.resizeDirection = resizeDirection;
 
@@ -45,10 +58,42 @@ export class Container {
 
     // work on this
     generateDrops() {
-        for (let index = 1; index < this.windows.length; index++) {
-            const window = this.windows[index];
+        /* For each adjacent pair of windows, create a fixed-dimensions <div> with the length of the shared side
+         * and width DROP_DISTANCE. Position these using `top` and `left` ready to be appended to the container's
+         * relative-positioned drop detection layer.
+         */
+        const $elements = [];
+        let topOffset = Container.CONTAINER_PADDING;
+        let leftOffset = Container.CONTAINER_PADDING;
+
+        const isDirVertical = this.direction === "v";
+
+        for (let index = 0; index < this.windows.length - 1; index++) {
+            const $window = this.windows[index];
+
+            // I just realized that this would be better suited as an if/else block :P Oh well.
+            isDirVertical ? (leftOffset += $window.width()) : (topOffset += $window.height());
+
+            const $drop = $(`<div class="container-droppable"></div>`).css({
+                "top": `${topOffset}`,
+                "left": `${topOffset}`
+            });
+            if (isDirVertical) {
+                $drop.css({
+                    "width": `${2 * Container.DROP_DISTANCE}`,
+                    "height": `${$window.height()}`
+                });
+            } else {
+                $drop.css({
+                    "width": `${$window.width()}`,
+                    "height": `${2 * Container.DROP_DISTANCE}`
+                });
+            }
             
+            $elements.push($drop);
         }
+
+        return $elements;
     }
     // work on this
 
@@ -66,17 +111,18 @@ export class Container {
     }
     set resizeDirection(val) {
         // Detach the previous resizing callback
-        this.$resize.off("mousedown", this.#hoverCallback);
+        this.$resize.off("mousedown.container", this.#hoverCallback);
 
+        /* This still needs to be adjusted for all the resize directions. @StickmanRed (note to self) */
         this.#resizeDirection = val;
         const thisValue = this;
         this.#hoverCallback = function(event) {
-            const initHeight = thisValue.$element.height();
+            const initLength = thisValue.$element.height();
             const initY = event.pageY;
 
             // Check here if there's resizing issues
             $(document).on("mousemove.container", event => {
-                thisValue.$element.css("flex-basis", `${initHeight + (event.pageY - initY)}px`);
+                thisValue.$element.css("flex-basis", `${initLength + (event.pageY - initY)}px`);
             });
 
             $(document).one("mouseup", () => {
@@ -85,16 +131,16 @@ export class Container {
             });
         }
 
-        this.$resize.on("mousedown", this.#hoverCallback);
+        this.$resize.on("mousedown.container", this.#hoverCallback);
     }
 
     // "length" is measuring the resize direction
     get length() {
-        return (this.direction === "h") ? this.$element.height() : this.$element.width();
+        return (this.direction === "v") ? this.$element.height() : this.$element.width();
     }
     // "width" is measuring the other direction
     get width() {
-        return (this.direction === "h") ? this.$element.width() : this.$element.height();
+        return (this.direction === "v") ? this.$element.width() : this.$element.height();
     }
 
     attachWindow(window, index) {
