@@ -15,6 +15,10 @@
 .window-detached {
     position: absolute;
 }
+.window-draggable {
+    touch-action: none;
+    user-select: none;
+}
 
 /* Containers */
 .container {

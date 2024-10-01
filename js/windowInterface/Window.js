@@ -9,11 +9,13 @@ export class Window {
         this.title = name ?? "i don't know";
 
         this.$element = $(`<div class="window window-detached" id="Window${++Window.WINDOW_ID}"></div>`).appendTo($("#window-container"));
-        this.$header = $(`<div class="window-header" id="Window-Header${Window.WINDOW_ID}"></div>`).css({
+        this.$move = $(`<div class="window-draggable" id="Window-Move${Window.WINDOW_ID}"></div>`).css({
             flex: `0 0 ${Window.HEADER_HEIGHT}px`
         }).appendTo(this.$element);
+
+        // This should work however "Window-Move" is set up.
         let startPos, deltaPos;
-        this.interactHeader = interact(`#Window-Header${Window.WINDOW_ID}`).draggable({
+        this.interactMove = interact(`#Window-Move${Window.WINDOW_ID}`).draggable({
             listeners: {
                 start(event) {
                     startPos = [thisValue.$element.position().left, thisValue.$element.position().top];
