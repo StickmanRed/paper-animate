@@ -1,3 +1,5 @@
+import interact from "interactjs";
+
 export class Window {
     /* Static variables */
     static HEADER_HEIGHT = 15;
@@ -5,12 +7,32 @@ export class Window {
     static WINDOW_ID = 0;
 
     constructor(name) {
+        const thisValue = this;
         this.title = name ?? "i don't know";
 
         this.$element = $(`<div class="window window-detached" id="Window${++Window.WINDOW_ID}"></div>`).appendTo($("#window-container"));
-        this.$header = $(`<div class="window-header" id="Window-header${Window.WINDOW_ID}"></div>`).css({
+        this.$header = $(`<div class="window-header" id="Window-Header${Window.WINDOW_ID}"></div>`).css({
             flex: `0 0 ${Window.HEADER_HEIGHT}px`
         }).appendTo(this.$element);
+        let startPos, deltaPos;
+        this.interactHeader = interact(`#Window-Header${Window.WINDOW_ID}`).draggable({
+            listeners: {
+                start(event) {
+                    startPos = [thisValue.$element.position().top, thisValue.$element.position().left];
+                    deltaPos = [0, 0];
+                    console.log(event);
+                },
+                move(event) {
+                    deltaPos[0] += event.dx;
+                    deltaPos[1] += event.dy;
+
+                    thisValue.$element.css({
+                        top: startPos[0] + deltaPos[0],
+                        left: startPos[1] + deltaPos[1]
+                    });
+                }
+            }
+        });
 
         this.container = null;
 
