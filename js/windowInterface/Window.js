@@ -16,7 +16,7 @@ export class Window {
         this.interactHeader = interact(`#Window-Header${Window.WINDOW_ID}`).draggable({
             listeners: {
                 start(event) {
-                    startPos = [thisValue.$element.position().top, thisValue.$element.position().left];
+                    startPos = [thisValue.$element.position().left, thisValue.$element.position().top];
                     deltaPos = [0, 0];
                     console.log(event);
                 },
@@ -25,8 +25,8 @@ export class Window {
                     deltaPos[1] += event.dy;
 
                     thisValue.$element.css({
-                        top: startPos[0] + deltaPos[0],
-                        left: startPos[1] + deltaPos[1]
+                        left: startPos[0] + deltaPos[0],
+                        top: startPos[1] + deltaPos[1]
                     });
                 }
             }
