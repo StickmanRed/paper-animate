@@ -1,5 +1,3 @@
-import interact from "../../node_modules/interactjs/dist/interact.js";
-
 export class Window {
     /* Static variables */
     static HEADER_HEIGHT = 15;
