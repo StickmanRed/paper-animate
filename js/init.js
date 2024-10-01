@@ -1,16 +1,20 @@
 /* I think it could be useful to have a sort of file directory showing all the imports:
+ * (outdated)
  * 
- * init.js - - - - - - - - - - - -
- *   |                           |
- * Project.js [class Project]   keymap_init.js [function initKeymaps()] - - - - - - - - - -
- *   |                                             |                                      |
- *   |                                            KeymapObject.js [class KeymapObject]    tools.js [object toolInitKeymap]
- *   |                                - - - - - - - - - - - - - - - - - - - - - - - - - - |
- *   |                                |                                                  ToolWrapper.js [class ToolWrapper]
+ * init.js
+ *   |
+ * Project.js [class Project]
+ *   |
+ *   |
+ *   |
+ *   |
  * FunctionWrapper.js [class FunctionWrapper]
  */
 
 import { Project } from "./Project.js"; // Be careful with paper.js conflicts. Actually I don't think this will cause problems
+
+/* Test imports */
+import { Window } from "./windowInterface/Window.js";
 
 jQuery(function($) {
     /* Initialize canvas, paper.js */
@@ -42,4 +46,7 @@ jQuery(function($) {
         path.strokeColor = "red";
         path.add([0,0], [100, 100]);`
     );
+
+    var pleh = new Window("hiya");
+    
 });

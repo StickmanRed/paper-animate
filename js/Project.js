@@ -1,10 +1,13 @@
-import { FunctionWrapper } from "./FunctionWrapper.js";
+// import { FunctionWrapper } from "./FunctionWrapper.js";
+
+/* Windows */
+// import { initTest } from "./windowInterface/windows-Test.js";
 
 export class Project {
     constructor() {
         this.name = "Untitled";
       
-        // WindowName:Window pairs
+        // WindowID:WindowInitialization pairs
         this.windows = {};
     }
 
