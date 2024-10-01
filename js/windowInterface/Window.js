@@ -1,4 +1,4 @@
-import interact from "interactjs";
+import interact from "../../node_modules/interactjs/dist/interact.js";
 
 export class Window {
     /* Static variables */
