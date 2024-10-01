@@ -9,7 +9,7 @@ export class Window {
 
         this.$element = $(`<div class="window window-detached" id="Window${++Window.WINDOW_ID}"></div>`).appendTo($("#window-container"));
         this.$header = $(`<div class="window-header" id="Window-header${Window.WINDOW_ID}"></div>`).css({
-            flex: `0 0 ${HEADER_HEIGHT}px`
+            flex: `0 0 ${Window.HEADER_HEIGHT}px`
         }).appendTo(this.$element);
 
         this.container = null;
