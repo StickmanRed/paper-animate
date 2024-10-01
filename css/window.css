@@ -19,6 +19,7 @@
 .window {
     overflow-x: hidden;
     overflow-y: auto;
+    flex-direction: column;
 }
 .window-detached {
     position: absolute;

@@ -17,9 +17,9 @@ export class Container {
 
         this.$element = $element.addClass(`container container-${direction}`);
         this.$windowContainer = $(`<div class="container-windows"></div>`).css({
-            "width": `calc(100% - ${Container.CONTAINER_PADDING}px)`,
-            "height": `calc(100% - ${Container.CONTAINER_PADDING}px)`,
-            "margin": `${Container.CONTAINER_PADDING}px`,
+            width: `calc(100% - ${Container.CONTAINER_PADDING}px)`,
+            height: `calc(100% - ${Container.CONTAINER_PADDING}px)`,
+            margin: `${Container.CONTAINER_PADDING}px`,
         }).appendTo(this.$element);
 
         this.direction = direction;

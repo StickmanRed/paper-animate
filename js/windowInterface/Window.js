@@ -8,6 +8,9 @@ export class Window {
         this.title = name ?? "i don't know";
 
         this.$element = $(`<div class="window window-detached" id="Window${++Window.WINDOW_ID}"></div>`).appendTo($("#window-container"));
+        this.$header = $(`<div class="window-header" id="Window-header${Window.WINDOW_ID}"></div>`).css({
+            flex: `0 0 ${HEADER_HEIGHT}px`
+        }).appendTo(this.$element);
 
         this.container = null;
 
@@ -19,7 +22,7 @@ export class Window {
         this.title = title;
     }
     sizeWindow(size) {
-        if (this.container === null) {
+        if (!this.container) {
             this.size = size;
             this.$element.width(size[0]).height(size[1]);
         }
