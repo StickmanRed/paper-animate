@@ -2,22 +2,34 @@ export class Window {
     /* Static variables */
     static HEADER_HEIGHT = 15;
     static HEADER_WIDTH = 60;
+    static RESIZE_DISTANCE = 10;
     static WINDOW_ID = 0;
 
     constructor(name) {
         const thisValue = this;
+        Window.WINDOW_ID++;
+
         this.title = name ?? "i don't know";
 
-        this.$element = $(`<div class="window window-detached" id="Window${++Window.WINDOW_ID}"></div>`).appendTo($("#window-container"))
+        this.$element = $(`<div class="window window-detached" id="Window${Window.WINDOW_ID}"></div>`).appendTo($("#window-container"))
         .css("box-sizing", "border-box")
         .css("touch-action", "none");
 
+        this.$resizeContainer = $(`<div class="window-resizers" id="Window-Resizers${Window.WINDOW_ID}"></div>`).appendTo(this.$element);
+        this.$resizers = $()
+                         .add($(`<div class="window-resizeTop" id="Window-ResizeTop${Window.WINDOW_ID}"></div>`).css("height", Window.RESIZE_DISTANCE))
+                         .add($(`<div class="window-resizeBottom" id="Window-ResizeBottom${Window.WINDOW_ID}"></div>`).css("height", Window.RESIZE_DISTANCE))
+                         .add($(`<div class="window-resizeLeft" id="Window-ResizeLeft${Window.WINDOW_ID}"></div>`).css("width", Window.RESIZE_DISTANCE))
+                         .add($(`<div class="window-resizeRight" id="Window-ResizeRight${Window.WINDOW_ID}"></div>`).css("width", Window.RESIZE_DISTANCE))
+                         .addClass("window-resize")
+                         .appendTo(this.$resizeContainer);
+
         this.interactElement = interact(`#Window${Window.WINDOW_ID}`).resizable({
             edges: {
-                top: true,
-                left: true,
-                bottom: true,
-                right: true
+                top: this.$resizers.filter(".window-resizeTop")[0],
+                left: this.$resizers.filter(".window-resizeLeft")[0],
+                bottom: this.$resizers.filter(".window-resizeBottom")[0],
+                right: this.$resizers.filter(".window-resizeRight")[0]
             },
             listeners: {
                 move(event) {

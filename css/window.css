@@ -15,6 +15,32 @@
 .window-detached {
     position: absolute;
 }
+
+.window-resizers {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+.window-resize {
+    position: absolute;
+    /* One of these is overridden by the resizer elements. */
+    width: 100%;
+    height: 100%;
+}
+/* Hooray for CSS! It's finally working for me... hopefully. We'll see in the next test */
+.window-resizeTop {
+    bottom: 0;
+}
+.window-resizeBottom {
+    top: 100%;
+}
+.window-resizeLeft {
+    right: 0;
+}
+.window-resizeRight {
+    left: 100%;
+}
+
 .window-draggable {
     touch-action: none;
     user-select: none;
