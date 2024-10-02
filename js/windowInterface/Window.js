@@ -16,7 +16,7 @@ export class Window {
         .css("touch-action", "none");
 
         this.$resizeContainer = $(`<div class="window-resizers" id="Window-Resizers${Window.WINDOW_ID}"></div>`).appendTo(this.$element);
-        this.$resizers = $()
+        /* this.$resizers = $()
                          .add($(`<div class="window-resizeTop" id="Window-ResizeTop${Window.WINDOW_ID}"></div>`).css("height", Window.RESIZE_DISTANCE))
                          .add($(`<div class="window-resizeBottom" id="Window-ResizeBottom${Window.WINDOW_ID}"></div>`).css("height", Window.RESIZE_DISTANCE))
                          .add($(`<div class="window-resizeLeft" id="Window-ResizeLeft${Window.WINDOW_ID}"></div>`).css("width", Window.RESIZE_DISTANCE))
@@ -51,7 +51,7 @@ export class Window {
                     });
                 }
             }
-        });
+        }); */
 
         this.$move = $(`<div class="window-draggable" id="Window-Move${Window.WINDOW_ID}"></div>`).css({
             flex: `0 0 ${Window.HEADER_HEIGHT}px`
