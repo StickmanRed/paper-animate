@@ -5,6 +5,8 @@ export class Window {
     static RESIZE_DISTANCE = 10;
     static WINDOW_ID = 0;
 
+    static $root = $(":root").css("--resizeDistance", `${Window.RESIZE_DISTANCE}px`);
+
     constructor(name) {
         const thisValue = this;
         Window.WINDOW_ID++;
@@ -17,10 +19,10 @@ export class Window {
 
         this.$resizeContainer = $(`<div class="window-resizers" id="Window-Resizers${Window.WINDOW_ID}"></div>`).appendTo(this.$element);
         this.$resizers = $()
-                         .add($(`<div class="window-resizeTop" id="Window-ResizeTop${Window.WINDOW_ID}"></div>`).css("height", Window.RESIZE_DISTANCE))
-                         .add($(`<div class="window-resizeBottom" id="Window-ResizeBottom${Window.WINDOW_ID}"></div>`).css("height", Window.RESIZE_DISTANCE))
-                         .add($(`<div class="window-resizeLeft" id="Window-ResizeLeft${Window.WINDOW_ID}"></div>`).css("width", Window.RESIZE_DISTANCE))
-                         .add($(`<div class="window-resizeRight" id="Window-ResizeRight${Window.WINDOW_ID}"></div>`).css("width", Window.RESIZE_DISTANCE))
+                         .add($(`<div class="window-resizeV window-resizeTop" id="Window-ResizeTop${Window.WINDOW_ID}"></div>`))
+                         .add($(`<div class="window-resizeV window-resizeBottom" id="Window-ResizeBottom${Window.WINDOW_ID}"></div>`))
+                         .add($(`<div class="window-resizeH window-resizeLeft" id="Window-ResizeLeft${Window.WINDOW_ID}"></div>`))
+                         .add($(`<div class="window-resizeH window-resizeRight" id="Window-ResizeRight${Window.WINDOW_ID}"></div>`))
                          .addClass("window-resize")
                          .appendTo(this.$resizeContainer);
 
