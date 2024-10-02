@@ -9,8 +9,8 @@ export class Window {
         this.title = name ?? "i don't know";
 
         this.$element = $(`<div class="window window-detached" id="Window${++Window.WINDOW_ID}"></div>`).appendTo($("#window-container"))
-        .css(boxSizing, "border-box")
-        .css(touchAction, "none");
+        .css("box-sizing", "border-box")
+        .css("touch-action", "none");
 
         this.interactElement = interact(`#Window${Window.WINDOW_ID}`).resizable({
             edges: {
