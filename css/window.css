@@ -30,12 +30,12 @@
 .window-resizeV {
     width: calc(100% + 2 * var(--resizeDistance));
     height: var(--resizeDistance);
-    left: calc(0 - var(--resizeDistance));
+    left: calc(0px - var(--resizeDistance));
 }
 .window-resizeH {
     width: var(--resizeDistance);
     height: calc(100% + 2 * var(--resizeDistance));
-    top: calc(0 - var(--resizeDistance));
+    top: calc(0px - var(--resizeDistance));
 }
 .window-resizeTop {
     bottom: 100%;
