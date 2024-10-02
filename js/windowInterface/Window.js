@@ -8,7 +8,9 @@ export class Window {
         const thisValue = this;
         this.title = name ?? "i don't know";
 
-        this.$element = $(`<div class="window window-detached" id="Window${++Window.WINDOW_ID}"></div>`).appendTo($("#window-container"));
+        this.$element = $(`<div class="window window-detached" id="Window${++Window.WINDOW_ID}"></div>`).appendTo($("#window-container"))
+        .css(boxSizing, "border-box")
+        .css(touchAction, "none");
 
         this.interactElement = interact(`#Window${Window.WINDOW_ID}`).resizable({
             edges: {
@@ -29,7 +31,7 @@ export class Window {
         }).appendTo(this.$element);
 
         // This should work however "Window-Move" is set up.
-        let startPos, deltaPos;
+        /* let startPos, deltaPos;
         this.interactMove = interact(`#Window-Move${Window.WINDOW_ID}`).draggable({
             listeners: {
                 start(event) {
@@ -46,7 +48,7 @@ export class Window {
                     });
                 }
             }
-        });
+        }); */
 
         this.container = null;
 
