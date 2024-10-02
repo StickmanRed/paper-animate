@@ -11,12 +11,12 @@ jobs:
 
     - name: Script
       run: |
-        npm install interactjs
+        npm uninstall interactjs
       
     - name: Push commits
       run: |
         git config user.email "you@example.com"
         git config user.name "funny bot"
         git add --all
-        git commit -m "Install interact.js"
+        git commit -m "Uninstall interact.js"
         git push
