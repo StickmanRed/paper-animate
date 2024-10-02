@@ -10,8 +10,7 @@ export class Window {
 
         this.$element = $(`<div class="window window-detached" id="Window${++Window.WINDOW_ID}"></div>`).appendTo($("#window-container"));
 
-        let;
-        this.interactMove = interact(`#Window-Move${Window.WINDOW_ID}`).resizable({
+        this.interactElement = interact(`#Window${Window.WINDOW_ID}`).resizable({
             edges: {
                 top: true,
                 left: true,
