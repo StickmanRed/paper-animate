@@ -1,7 +1,7 @@
 /* Never thought I'd need these, but... CSS Variables */
-:root {
+/* :root {
     --resizeDistance: 0;
-}
+} */
 
 /* Windows */
 #window-container {
@@ -23,38 +23,6 @@
 .window-resizers {
     position: absolute;
     display: contents;
-}
-.window-resize {
-    position: absolute;
-}
-.window-resizeV {
-    width: 100%;
-    height: var(--resizeDistance);
-}
-.window-resizeH {
-    width: var(--resizeDistance);
-    height: 100%;
-}
-.window-resizeCorner {
-    width: var(--resizeDistance);
-    height: var(--resizeDistance);
-}
-.window-resizeTop {
-    bottom: 100%;
-}
-.window-resizeBottom {
-    top: 100%;
-}
-.window-resizeLeft {
-    right: 100%;
-}
-.window-resizeRight {
-    left: 100%;
-}
-
-.window-draggable {
-    touch-action: none;
-    user-select: none;
 }
 
 /* Containers */
