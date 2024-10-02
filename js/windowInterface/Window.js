@@ -64,7 +64,6 @@ export class Window {
                 start(event) {
                     startPos = [thisValue.$element.position().left, thisValue.$element.position().top];
                     deltaPos = [0, 0];
-                    console.log("Move event started.");
                 },
                 move(event) {
                     deltaPos[0] += event.dx;
@@ -74,7 +73,6 @@ export class Window {
                         left: startPos[0] + deltaPos[0],
                         top: startPos[1] + deltaPos[1]
                     });
-                    console.log("Moving");
                 }
             }
         });

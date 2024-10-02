@@ -17,8 +17,7 @@
 
 .window-resizers {
     position: absolute;
-    width: 100%;
-    height: 100%;
+    display: contents;
 }
 .window-resize {
     position: absolute;
@@ -42,7 +41,6 @@
 .window-draggable {
     touch-action: none;
     user-select: none;
-    z-index: 1; /* Sloppy */
 }
 
 /* Containers */
