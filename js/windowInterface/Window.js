@@ -9,6 +9,22 @@ export class Window {
         this.title = name ?? "i don't know";
 
         this.$element = $(`<div class="window window-detached" id="Window${++Window.WINDOW_ID}"></div>`).appendTo($("#window-container"));
+
+        let;
+        this.interactMove = interact(`#Window-Move${Window.WINDOW_ID}`).resizable({
+            edges: {
+                top: true,
+                left: true,
+                bottom: true,
+                right: true
+            },
+            listeners: {
+                move(event) {
+                    console.log(event.target.dataset);
+                }
+            }
+        });
+
         this.$move = $(`<div class="window-draggable" id="Window-Move${Window.WINDOW_ID}"></div>`).css({
             flex: `0 0 ${Window.HEADER_HEIGHT}px`
         }).appendTo(this.$element);
@@ -20,7 +36,6 @@ export class Window {
                 start(event) {
                     startPos = [thisValue.$element.position().left, thisValue.$element.position().top];
                     deltaPos = [0, 0];
-                    console.log(event);
                 },
                 move(event) {
                     deltaPos[0] += event.dx;
