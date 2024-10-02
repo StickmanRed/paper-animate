@@ -35,7 +35,7 @@ export class Window {
             },
             listeners: {
                 start(event) {
-                    startPosResize = [thisValue.$element.position().top, thisValue.$element.position().left];
+                    startPosResize = [thisValue.$element.position().left, thisValue.$element.position().top];
                     deltaPosResize = [0, 0];
                 },
                 move(event) {
