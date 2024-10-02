@@ -28,10 +28,10 @@ export class Window {
         // @StickmanRed (note to self): fix this mess of a CSS and allow resizing in both directions.
         this.interactElement = interact(`#Window${Window.WINDOW_ID}`).resizable({
             edges: {
-                top: this.$resizers.filter(".window-resizeTop")[0],
-                left: this.$resizers.filter(".window-resizeLeft")[0],
-                bottom: this.$resizers.filter(".window-resizeBottom")[0],
-                right: this.$resizers.filter(".window-resizeRight")[0]
+                top: thisValue.$resizers.filter(".window-resizeTop")[0],
+                left: thisValue.$resizers.filter(".window-resizeLeft")[0],
+                bottom: thisValue.$resizers.filter(".window-resizeBottom")[0],
+                right: thisValue.$resizers.filter(".window-resizeRight")[0]
             },
             listeners: {
                 start(event) {
@@ -58,12 +58,14 @@ export class Window {
         }).appendTo(this.$element);
 
         // This should work however "Window-Move" is set up.
+        // @StickmanRed (note to self): This doesn't work. Investigate!
         let startPos, deltaPos;
         this.interactMove = interact(`#Window-Move${Window.WINDOW_ID}`).draggable({
             listeners: {
                 start(event) {
                     startPos = [thisValue.$element.position().left, thisValue.$element.position().top];
                     deltaPos = [0, 0];
+                    console.log("Move event started.");
                 },
                 move(event) {
                     deltaPos[0] += event.dx;
@@ -73,9 +75,11 @@ export class Window {
                         left: startPos[0] + deltaPos[0],
                         top: startPos[1] + deltaPos[1]
                     });
+                    console.log("Moving");
                 }
             }
         });
+        console.log(this.interactMove);
 
         this.container = null;
 
