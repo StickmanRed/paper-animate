@@ -7,8 +7,7 @@
     height: 100%;
 }
 .window {
-    overflow-x: hidden;
-    overflow-y: auto;
+    overflow: visible;
     display: flex;
     flex-direction: column;
 }
@@ -29,13 +28,13 @@
 }
 /* Hooray for CSS! It's finally working for me... hopefully. We'll see in the next test */
 .window-resizeTop {
-    bottom: -100%;
+    bottom: 100%;
 }
 .window-resizeBottom {
     top: 100%;
 }
 .window-resizeLeft {
-    right: -100%;
+    right: 100%;
 }
 .window-resizeRight {
     left: 100%;
