@@ -28,14 +28,16 @@
     position: absolute;
 }
 .window-resizeV {
-    width: calc(100% + 2 * var(--resizeDistance));
+    width: 100%;
     height: var(--resizeDistance);
-    left: calc(0px - var(--resizeDistance));
 }
 .window-resizeH {
     width: var(--resizeDistance);
-    height: calc(100% + 2 * var(--resizeDistance));
-    top: calc(0px - var(--resizeDistance));
+    height: 100%;
+}
+.window-resizeCorner {
+    width: var(--resizeDistance);
+    height: var(--resizeDistance);
 }
 .window-resizeTop {
     bottom: 100%;

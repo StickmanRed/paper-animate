@@ -18,22 +18,26 @@ export class Window {
         .css("touch-action", "none");
 
         this.$resizeContainer = $(`<div class="window-resizers" id="Window-Resizers${Window.WINDOW_ID}"></div>`).appendTo(this.$element);
-        this.$resizers = $()
+        this.$resizers = $() /* That's a lot of elements for just one resizing mechanism. */
                          .add($(`<div class="window-resizeV window-resizeTop" id="Window-ResizeTop${Window.WINDOW_ID}"></div>`))
                          .add($(`<div class="window-resizeV window-resizeBottom" id="Window-ResizeBottom${Window.WINDOW_ID}"></div>`))
                          .add($(`<div class="window-resizeH window-resizeLeft" id="Window-ResizeLeft${Window.WINDOW_ID}"></div>`))
                          .add($(`<div class="window-resizeH window-resizeRight" id="Window-ResizeRight${Window.WINDOW_ID}"></div>`))
+                         .add($(`<div class="window-resizeTop window-resizeLeft window-resizeCorner" id="Window-ResizeTLC${Window.WINDOW_ID}"></div>`)) /* tlc */
+                         .add($(`<div class="window-resizeTop window-resizeRight window-resizeCorner" id="Window-ResizeTRC${Window.WINDOW_ID}"></div>`))
+                         .add($(`<div class="window-resizeBottom window-resizeLeft window-resizeCorner" id="Window-ResizeBLC${Window.WINDOW_ID}"></div>`))
+                         .add($(`<div class="window-resizeBottom window-resizeRight window-resizeCorner" id="Window-ResizeBRC${Window.WINDOW_ID}"></div>`)) /* brc */
                          .addClass("window-resize")
                          .appendTo(this.$resizeContainer);
 
         let startPosResize, deltaPosResize;
-        // @StickmanRed (note to self): fix this mess of a CSS and allow resizing in both directions.
+        // @StickmanRed (note to self): fix this mess of a CSS [x] and allow resizing in both directions [ ].
         this.interactElement = interact(`#Window${Window.WINDOW_ID}`).resizable({
             edges: {
-                top: thisValue.$resizers.filter(".window-resizeTop")[0],
-                left: thisValue.$resizers.filter(".window-resizeLeft")[0],
-                bottom: thisValue.$resizers.filter(".window-resizeBottom")[0],
-                right: thisValue.$resizers.filter(".window-resizeRight")[0]
+                top: `#Window-Resizers${Window.WINDOW_ID}>.window-resizeTop`,
+                left: `#Window-Resizers${Window.WINDOW_ID}>.window-resizeLeft`,
+                bottom: `#Window-Resizers${Window.WINDOW_ID}>.window-resizeBottom`,
+                right: `#Window-Resizers${Window.WINDOW_ID}>.window-resizeRight`
             },
             listeners: {
                 start(event) {
