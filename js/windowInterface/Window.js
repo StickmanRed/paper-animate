@@ -60,7 +60,7 @@ export class Window {
         // This should work however "Window-Move" is set up.
         // @StickmanRed (note to self): This doesn't work. Investigate!
         let startPos, deltaPos;
-        this.interactMove = interact(`#Window-Move${Window.WINDOW_ID}`).draggable({
+        this.interactMove = interact(this.$move[0]).draggable({
             listeners: {
                 start(event) {
                     startPos = [thisValue.$element.position().left, thisValue.$element.position().top];
