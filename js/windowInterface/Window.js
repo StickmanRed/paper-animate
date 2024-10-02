@@ -24,6 +24,7 @@ export class Window {
                          .addClass("window-resize")
                          .appendTo(this.$resizeContainer);
 
+        let startPosResize, deltaPosResize;
         this.interactElement = interact(`#Window${Window.WINDOW_ID}`).resizable({
             edges: {
                 top: this.$resizers.filter(".window-resizeTop")[0],
@@ -32,8 +33,21 @@ export class Window {
                 right: this.$resizers.filter(".window-resizeRight")[0]
             },
             listeners: {
+                start(event) {
+                    startPosResize = [thisValue.$element.position().top, thisValue.$element.position().left];
+                    deltaPosResize = [0, 0];
+                },
                 move(event) {
-                    console.log(event.target.dataset);
+                    const {width, height} = event.rect;
+                    deltaPosResize[0] += event.deltaRect.left;
+                    deltaPosResize[1] += event.deltaRect.top;
+
+                    thisValue.$element.css({
+                        width: width,
+                        height: height,
+                        left: startPosResize[0] + deltaPosResize[0],
+                        top: startPosResize[1] + deltaPosResize[1]
+                    });
                 }
             }
         });
