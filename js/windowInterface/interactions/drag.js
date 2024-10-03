@@ -5,10 +5,9 @@ function blah(input, drag) {
     $drag.on("mousedown", function(event) {
         console.log("Start move");
         const start = [event.pageX, event.pageY];
-        const startElement = [$element.css("left"), $element.css("top")];
+        const startElement = [$element.position().left, $element.position().top];
 
         function onDrag(event) {
-            console.log(event);
             $element.css({
                 left: startElement[0] + (event.pageX - start[0]),
                 top: startElement[1] + (event.pageY - start[1])
@@ -18,7 +17,6 @@ function blah(input, drag) {
         $(document).on("mousemove.drag", onDrag);
         $(document).one("mouseup", function() {
             $(document).off("mousemove.drag", onDrag);
-            console.log("Completed.");
         });
     });
 }
