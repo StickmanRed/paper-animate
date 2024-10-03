@@ -25,6 +25,7 @@ export class Window {
 
         // Work In Progress
         blah(this.$element, this.$move);
+        console.log("Initiated.");
 
         this.container = null;
 
