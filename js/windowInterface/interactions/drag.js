@@ -3,12 +3,11 @@ function blah(input, drag) {
     const $drag = $(drag);
 
     $drag.on("mousedown", function(event) {
-        console.log("Start move");
         const start = [event.pageX, event.pageY];
-        const startElement = [$element.position().left, $element.position().top];
+        const startElement = [$element.offset().left, $element.offset().top];
 
         function onDrag(event) {
-            $element.css({
+            $element.offset({
                 left: startElement[0] + (event.pageX - start[0]),
                 top: startElement[1] + (event.pageY - start[1])
             });

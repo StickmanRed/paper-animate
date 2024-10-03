@@ -1,4 +1,5 @@
 import { blah } from "./interactions/drag.js";
+import { buh } from "./interactions/resize.js";
 
 export class Window {
     /* Static variables */
@@ -25,6 +26,7 @@ export class Window {
 
         // Work In Progress
         blah(this.$element, this.$move);
+        buh(this.$element, "#window-container" /* We can do this because of the jQuery function's overloaded awesomeness :D */);
 
         this.container = null;
 
