@@ -1,3 +1,5 @@
+import { blah } from "./interactions/drag.js";
+
 export class Window {
     /* Static variables */
     static HEADER_HEIGHT = 15;
@@ -20,6 +22,9 @@ export class Window {
         this.$move = $(`<div class="window-draggable" id="Window-Move${Window.WINDOW_ID}"></div>`).css({
             flex: `0 0 ${Window.HEADER_HEIGHT}px`
         }).appendTo(this.$element);
+
+        // Work In Progress
+        blah(this.$element, this.$move);
 
         this.container = null;
 
