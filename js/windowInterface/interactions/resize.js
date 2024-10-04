@@ -45,6 +45,7 @@ function buh(input, container, inputSpec) {
         }
 
         const start = [event.pageX, event.pageY];
+        console.log(start);
         const type = condition(start);
 
         if (type) {
