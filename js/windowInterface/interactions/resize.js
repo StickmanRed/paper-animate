@@ -49,38 +49,42 @@ function buh(input, container, inputSpec) {
         if (type) {
             const startPos = [$input.offset().left, $input.offset().top];
             const startDim = [$input.width(), $input.height()];
-
-            const delta = [event.pageX - start[0], event.pageY - start[1]];
     
-            let onResize;
+            let onResizeV, onResizeH;
             /* Finally, I get to use the switch statement. I feel like a professional B)
-             * Also, Shift+Alt+A has become my favorite coding shortcut!
-             */
+                * Also, Shift+Alt+A has become my favorite coding shortcut!
+                */
             switch (type.v) {
                 case "t":
-                    onResize = function(event) {
+                    onResizeV = function(delta) {
                         $input.offset({top: startPos[1] + delta[1]});
                         $input.height(startDim[1] - delta[1]);
                     }
                     break;
                 case "b":
-                    onResize = function(event) {
+                    onResizeV = function(delta) {
                         $input.height(startDim[1] + delta[1]);
                     }
                     break;
             }
             switch (type.h) {
                 case "l":
-                    onResize = function(event) {
+                    onResizeH = function(delta) {
                         $input.offset({left: startPos[0] + delta[0]});
                         $input.width(startDim[0] - delta[0]);
                     }
                     break;
                 case "r":
-                    onResize = function(event) {
+                    onResizeH = function(delta) {
                         $input.width(startDim[0] - delta[0]);
                     }
                     break;
+            }
+
+            function onResize(event) {
+                const delta = [event.pageX - start[0], event.pageY - start[1]];
+                onResizeV(delta);
+                onResizeH(delta);
             }
     
             $(document).on("mousemove.resize", onResize);
