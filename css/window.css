@@ -20,10 +20,10 @@
     position: absolute;
 }
 
-.window-resizers {
+/* .window-resizers {
     position: absolute;
     display: contents;
-}
+} */
 
 /* Containers */
 .container {

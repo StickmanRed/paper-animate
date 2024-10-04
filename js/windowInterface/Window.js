@@ -18,7 +18,7 @@ export class Window {
 
         this.$element = $(`<div class="window window-detached" id="Window${Window.WINDOW_ID}"></div>`).appendTo($("#window-container"));
 
-        this.$resizeContainer = $(`<div class="window-resizers" id="Window-Resizers${Window.WINDOW_ID}"></div>`).appendTo(this.$element);
+        // this.$resizeContainer = $(`<div class="window-resizers" id="Window-Resizers${Window.WINDOW_ID}"></div>`).appendTo(this.$element);
 
         this.$move = $(`<div class="window-draggable" id="Window-Move${Window.WINDOW_ID}"></div>`).css({
             flex: `0 0 ${Window.HEADER_HEIGHT}px`
