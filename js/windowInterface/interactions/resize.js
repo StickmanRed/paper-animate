@@ -77,7 +77,7 @@ function buh(input, container, inputSpec) {
                     break;
                 case "r":
                     onResizeH = function(delta) {
-                        $input.width(startDim[0] - delta[0]);
+                        $input.width(startDim[0] + delta[0]);
                     }
                     break;
             }
