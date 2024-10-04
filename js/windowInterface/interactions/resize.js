@@ -47,6 +47,7 @@ function buh(input, container, inputSpec) {
         const type = condition(start);
 
         if (type) {
+            console.log("So the type is correct.");
             const startPos = [$input.offset().left, $input.offset().top];
             const startDim = [$input.width(), $input.height()];
     
@@ -82,10 +83,12 @@ function buh(input, container, inputSpec) {
             }
 
             function onResize(event) {
+                console.log("resizing!");
                 const delta = [event.pageX - start[0], event.pageY - start[1]];
                 onResizeV(delta);
                 onResizeH(delta);
             }
+            console.log("The function is created.", onResize);
     
             $(document).on("mousemove.resize", onResize);
             $(document).one("mouseup", function() {
