@@ -8,8 +8,11 @@ function rect(corner1, corner2) {
     return {tlc: corner1, brc: corner2}; /* The two favorites: TLC and BRC */
 }
 function rectIncludes(point, tlc, brc) {
+    /* This confused me xD
+     * I'm so used to the y-axis going upward, but here it's measured going downward
+     */
     return (point[0] >= tlc[0]) && (point[0] <= brc[0])
-           && (point[1] >= brc[1]) && (point[1] <= tlc[1]);
+           && (point[1] >= tlc[1]) && (point[1] <= brc[1]);
 }
 
 function buh(input, container, inputSpec) {
