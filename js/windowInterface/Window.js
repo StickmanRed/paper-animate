@@ -1,5 +1,5 @@
-import { blah } from "./interactions/drag.js";
-import { buh } from "./interactions/resize.js";
+import { draggable } from "./interactions/drag.js";
+import { resizeable } from "./interactions/resize.js";
 
 export class Window {
     /* Static variables */
@@ -24,9 +24,8 @@ export class Window {
             flex: `0 0 ${Window.HEADER_HEIGHT}px`
         }).appendTo(this.$element);
 
-        // Work In Progress
-        blah(this.$element, this.$move);
-        buh(this.$element, "#window-container" /* We can do this because of the jQuery function's overloaded awesomeness :D */, {resizeDistance: Window.RESIZE_DISTANCE});
+        draggable(this.$element, this.$move);
+        resizeable(this.$element, "#window-container" /* We can do this because of the jQuery function's overloaded awesomeness :D */, {resizeDistance: Window.RESIZE_DISTANCE});
 
         this.container = null;
 

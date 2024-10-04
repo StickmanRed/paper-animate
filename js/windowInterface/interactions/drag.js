@@ -1,6 +1,15 @@
-function blah(input, drag) {
+function draggable(input, drag) {
     const $element = $(input);
     const $drag = $(drag);
+
+    function onHover() {
+        $("body").css("cursor", "grab");
+    }
+    function offHover() {
+        $("body").css("cursor", "auto");
+    }
+    $drag.on("mouseenter", onHover);
+    $drag.on("mouseleave", offHover);
 
     $drag.on("mousedown", function(event) {
         const start = [event.pageX, event.pageY];
@@ -20,4 +29,4 @@ function blah(input, drag) {
     });
 }
 
-export {blah};
+export {draggable};
