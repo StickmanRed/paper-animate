@@ -1,3 +1,5 @@
+import { WindowContent } from "./WindowContent.js";
+
 import { draggable } from "./interactions/drag.js";
 import { resizeable } from "./interactions/resize.js";
 
@@ -26,6 +28,10 @@ export class Window {
 
         draggable(this.$element, this.$move);
         resizeable(this.$element, "#window-container" /* We can do this because of the jQuery function's overloaded awesomeness :D */, {resizeDistance: Window.RESIZE_DISTANCE});
+
+        this.logicalContent = new WindowContent();
+        this.$windowContent = this.logicalContent.$element.appendTo(this.$element);
+        this.logicalContent.appendButton({description: "A normal button.", text: "Hello there!"});
 
         this.container = null;
 
