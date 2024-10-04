@@ -47,11 +47,11 @@ function buh(input, container, inputSpec) {
         const type = condition(start);
 
         if (type) {
-            console.log("So the type is correct.");
             const startPos = [$input.offset().left, $input.offset().top];
             const startDim = [$input.width(), $input.height()];
     
-            let onResizeV, onResizeH;
+            let onResizeV = delta => {};
+            let onResizeH = delta => {};
             /* Finally, I get to use the switch statement. I feel like a professional B)
                 * Also, Shift+Alt+A has become my favorite coding shortcut!
                 */
@@ -83,12 +83,10 @@ function buh(input, container, inputSpec) {
             }
 
             function onResize(event) {
-                console.log("resizing!");
                 const delta = [event.pageX - start[0], event.pageY - start[1]];
                 onResizeV(delta);
                 onResizeH(delta);
             }
-            console.log("The function is created.", onResize);
     
             $(document).on("mousemove.resize", onResize);
             $(document).one("mouseup", function() {
