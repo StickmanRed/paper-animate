@@ -5,16 +5,17 @@
  * ?
  */
 function rect(corner1, corner2) {
-    return {tlc: corner1, brc: corner2}; /* The two favorites */
+    return {tlc: corner1, brc: corner2}; /* The two favorites: TLC and BRC */
 }
 function rectIncludes(point, tlc, brc) {
     return (point[0] >= tlc[0]) && (point[0] <= brc[0])
            && (point[1] >= brc[1]) && (point[1] <= tlc[1]);
 }
 
-function buh(input, container, spec) {
+function buh(input, container, inputSpec) {
     const $input = $(input);
     const $container = $(container);
+    const spec = Object.assign({type: "outer-edge", resizeDistance: 10}, inputSpec);
 
     $container.on("mousedown", function(event) {
         let condition;

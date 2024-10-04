@@ -26,7 +26,7 @@ export class Window {
 
         // Work In Progress
         blah(this.$element, this.$move);
-        buh(this.$element, "#window-container" /* We can do this because of the jQuery function's overloaded awesomeness :D */);
+        buh(this.$element, "#window-container" /* We can do this because of the jQuery function's overloaded awesomeness :D */, {resizeDistance: Window.RESIZE_DISTANCE});
 
         this.container = null;
 
