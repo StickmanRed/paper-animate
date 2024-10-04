@@ -13,11 +13,14 @@ function rectIncludes(point, tlc, brc) {
 }
 
 function buh(input, container, inputSpec) {
+    console.log("The function has been run. Initiate the tests! - Golf Ball");
     const $input = $(input);
     const $container = $(container);
     const spec = Object.assign({type: "outer-edge", resizeDistance: 10}, inputSpec);
+    console.log("The specifications are the following:", spec);
 
     $container.on("mousedown", function(event) {
+        console.log("Mousedown works!");
         let condition;
         if (spec.type === "outer-edge") {
             const dist = spec.resizeDistance;
@@ -38,55 +41,54 @@ function buh(input, container, inputSpec) {
 
                 return (exit.v || exit.h) ? exit : false;
             }
+            console.log(condition);
         }
 
-        $container.on("mousedown", function(event) {
-            const start = [event.pageX, event.pageY];
-            const type = condition(start);
+        const start = [event.pageX, event.pageY];
+        const type = condition(start);
 
-            if (type) {
-                const startPos = [$element.offset().left, $element.offset().top];
-                const startDim = [$element.width(), $element.height()];
+        if (type) {
+            const startPos = [$element.offset().left, $element.offset().top];
+            const startDim = [$element.width(), $element.height()];
 
-                const delta = [event.pageX - start[0], event.pageY - start[1]];
-        
-                let onResize;
-                /* Finally, I get to use the switch statement. I feel like a professional B)
-                 * Also, Shift+Alt+A has become my favorite coding shortcut!
-                 */
-                switch (type.v) {
-                    case "t":
-                        onResize = function(event) {
-                            $input.offset({top: startPos[1] + delta[1]});
-                            $input.height(startDim[1] - delta[1]);
-                        }
-                        break;
-                    case "b":
-                        onResize = function(event) {
-                            $input.height(startDim[1] + delta[1]);
-                        }
-                        break;
-                }
-                switch (type.h) {
-                    case "l":
-                        onResize = function(event) {
-                            $input.offset({left: startPos[0] + delta[0]});
-                            $input.width(startDim[0] - delta[0]);
-                        }
-                        break;
-                    case "r":
-                        onResize = function(event) {
-                            $input.width(startDim[0] - delta[0]);
-                        }
-                        break;
-                }
-        
-                $(document).on("mousemove.resize", onResize);
-                $(document).one("mouseup", function() {
-                    $(document).off("mousemove.resize", onResize);
-                });
-           }
-        });
+            const delta = [event.pageX - start[0], event.pageY - start[1]];
+    
+            let onResize;
+            /* Finally, I get to use the switch statement. I feel like a professional B)
+                * Also, Shift+Alt+A has become my favorite coding shortcut!
+                */
+            switch (type.v) {
+                case "t":
+                    onResize = function(event) {
+                        $input.offset({top: startPos[1] + delta[1]});
+                        $input.height(startDim[1] - delta[1]);
+                    }
+                    break;
+                case "b":
+                    onResize = function(event) {
+                        $input.height(startDim[1] + delta[1]);
+                    }
+                    break;
+            }
+            switch (type.h) {
+                case "l":
+                    onResize = function(event) {
+                        $input.offset({left: startPos[0] + delta[0]});
+                        $input.width(startDim[0] - delta[0]);
+                    }
+                    break;
+                case "r":
+                    onResize = function(event) {
+                        $input.width(startDim[0] - delta[0]);
+                    }
+                    break;
+            }
+    
+            $(document).on("mousemove.resize", onResize);
+            $(document).one("mouseup", function() {
+                $(document).off("mousemove.resize", onResize);
+            });
+        }
     });
 }
 
