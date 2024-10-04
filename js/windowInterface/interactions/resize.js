@@ -13,14 +13,11 @@ function rectIncludes(point, tlc, brc) {
 }
 
 function buh(input, container, inputSpec) {
-    console.log("The function has been run. Initiate the tests! - Golf Ball");
     const $input = $(input);
     const $container = $(container);
     const spec = Object.assign({type: "outer-edge", resizeDistance: 10}, inputSpec);
-    console.log("The specifications are the following:", spec);
 
     $container.on("mousedown", function(event) {
-        console.log("Mousedown works!");
         let condition;
         if (spec.type === "outer-edge") {
             const dist = spec.resizeDistance;
@@ -29,11 +26,15 @@ function buh(input, container, inputSpec) {
                                    [inputPosition.left + $input.width(), inputPosition.top + $input.height()]);
 
             condition = function(coords) {
+                console.log("Bug squashing info:", inputPosition, inputRect);
+
                 /* This gives me a headache */
                 const top = rectIncludes(coords, [inputRect.tlc[0] - dist, inputRect.tlc[1] - dist], [inputRect.brc[0] + dist, inputRect.tlc[1]]);
                 const left = rectIncludes(coords, [inputRect.tlc[0] - dist, inputRect.tlc[1] - dist], [inputRect.tlc[0], inputRect.brc[1] + dist]);
                 const right = rectIncludes(coords, [inputRect.brc[0], inputRect.tlc[1] - dist], [inputRect.brc[0] + dist, inputRect.brc[1] + dist]);
                 const bottom = rectIncludes(coords, [inputRect.tlc[0] - dist, inputRect.brc[1]], [inputRect.brc[0] + dist, inputRect.brc[1] + dist]);
+
+                console.log("Does it or not?", top, left, right, bottom);
 
                 const exit = {};
                 exit.v = top ? "t" : (bottom ? "b" : false);
@@ -41,7 +42,6 @@ function buh(input, container, inputSpec) {
 
                 return (exit.v || exit.h) ? exit : false;
             }
-            console.log(condition);
         }
 
         const start = [event.pageX, event.pageY];
