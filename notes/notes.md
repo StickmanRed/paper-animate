@@ -18,9 +18,10 @@ While I'm brainstorming, why not pick up some more wanted features from the Wick
 
 ## what to do
 
-- [ ] Figure out what to do
-- [ ] Setup canvas, tools, and other stuff on page load
-- [ ] Start on unified key detection system (take paper.js KeyEvent and jQuery on-keydown into account)
+- [ ] Figure out what to do (unchecking this because I still haven't figured out what to do)
+- [x] Okay I don't know why I didn't just use this as the task list, but I've created issues and I'll move them here.
+- [x] UX - Prototype windows/panels
+- [ ] UX - Create methods to set window/panel contents (In progress)
 
 # Log
 
